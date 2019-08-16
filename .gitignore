@@ -1,0 +1,9 @@
+/bin/*
+!/bin/attachments.sh
+!/bin/build.sh
+/node_modules
+/obj
+/releases
+.builderr
+*.lnk
+debug.lua
