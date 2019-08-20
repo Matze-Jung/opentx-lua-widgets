@@ -1,4 +1,3 @@
--- local rssi, alarm_low, alarm_crit = getRSSI()
 local layout = {
     {
         {
@@ -11,7 +10,7 @@ local layout = {
                 end,
                 stairs=8,
                 space=1,
-                p={r=0,b=3} --???
+                p={r=0,b=3}
             }
         },
         {
@@ -26,25 +25,9 @@ local layout = {
                 end,
                 stairs=8,
                 space=1,
-                p={r=0,b=3} --???
+                p={r=0,b=3}
             }
         },
-        -- {
-        --     id="value",
-        --     opts={
-        --         lbl="Model",
-        --         src=function() local m = model.getInfo() return m.name end,
-        --     }
-        -- },
-        -- {
-        --     id="value",
-        --     opts={
-        --         lbl="VFAS",
-        --         src="VFAS",
-        --         unit="V",
-        --         min=14,
-        --     }
-        -- },
         {
             id="value",
             opts={
@@ -73,6 +56,7 @@ local layout = {
                 lbl="Cells",
                 src=function()
                     local cels = getValue("Cels")
+                    if type(cels) == "number" then return 0 end
                     local sum = 0
                     for i=1, #cels do
                         sum = sum + cels[i]
@@ -84,16 +68,6 @@ local layout = {
                 style=PREC2,
             }
         },
-        -- {
-        --     id="value",
-        --     opts={
-        --         lbl="F-Mode",
-        --         src=function()
-        --             return getValue("gvar8") > 0 and getValue("gvar8") or "N/A"
-        --         end,
-        --         unit="",
-        --     }
-        -- },
         {
             id="value",
             opts={
@@ -104,21 +78,10 @@ local layout = {
         },
     },
     {
-        { id="rssi" }
+        { id="rssi" },
     },
-    -- {
-    --     { id="rssi", opts={p={l=0}} }
-    -- },
-    -- {
-    --     { id="graph", opts={uid=5, src="thr", lbl="THR", unit="%", speed=50, min=-1000, max=1000, lblmax="max", lblmin="min", p={r=18}} },
-    --     { id="graph", opts={uid=6, src=function() return getGraphAverage(5) end, lbl="THR AVRG", unit="%", speed=50, min=-1000, max=1000, lblmax="max", lblmin="min", p={r=18}} },
-    --     --[[,"../TELEMETRY/graph3"--]]
-    -- },
-    -- {"fm", "gps", "timer"},
-    -- {"distance", "altitude", "speed"},
---    {"batt"},
-    -- {"rssi"},
 }
+
 local w = assert(loadScript("/SCRIPTS/WIDGETS/widgets.lua"))(layout)
 
 return { init=w.init, run=w.run }

@@ -1,3 +1,6 @@
+-- NOTE: Layout requires the opentx-lua-running-graphs package installed
+--       and the graphs-script running. https://github.com/Matze-Jung/opentx-lua-running-graphs
+
 local layout = {
     {
         {
@@ -32,6 +35,7 @@ local layout = {
         },
     },
 }
+
 local w = assert(loadScript("/SCRIPTS/WIDGETS/widgets.lua"))(layout)
 
 return { init=w.init, run=w.run }

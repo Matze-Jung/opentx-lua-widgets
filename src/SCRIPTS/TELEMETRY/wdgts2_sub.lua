@@ -1,3 +1,6 @@
+-- NOTE: Layout requires the opentx-lua-running-graphs package installed
+--       and the graphs-script running. https://github.com/Matze-Jung/opentx-lua-running-graphs
+
 local layout = {
     {
         {
@@ -22,14 +25,6 @@ local layout = {
         },
     },
     {
-        -- {
-        --     id="value",
-        --     opts={
-        --         src=function() local m = model.getInfo() return m.name end,
-        --         lbl="Model",
-        --         p={r=0,l=0}
-        --     }
-        -- },
         {
             id="h-bar",
             opts={
@@ -40,7 +35,6 @@ local layout = {
                 end,
                 space=0,
                 bg=true,
-                -- p={b=-1},
             }
         },
         {
@@ -55,7 +49,8 @@ local layout = {
         },
     },
 }
--- set the second param to a true value, if this is nested inside a parent widget
+
+-- if nested inside a parent layout, set the second param of assert to a true value
 local w = assert(loadScript("/SCRIPTS/WIDGETS/widgets.lua"))(layout, 1)
 
 return { init=w.init, run=w.run }
