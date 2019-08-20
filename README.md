@@ -3,38 +3,37 @@
 
 slim, auto scaling, nestable, open
 
-
-![alt text](https://github.com/Matze-Jung/opentx-lua-widgets/raw/master/img/wdgts2.lua.gif "TELEMETRY/wdgts2.lua")
+![alt text](img/x7home.lua.gif "TELEMETRY/x7home.lua")
+![alt text](img/wdgts2.lua.gif "TELEMETRY/wdgts2.lua")
 
 >  \**graph-widget integrates from [opentx-lua-running-graphs](https://github.com/Matze-Jung/opentx-lua-running-graphs) package*
 
+## Download
+Please go to the [releases page](https://github.com/Matze-Jung/opentx-lua-widgets/releases) to download the latest files.
 
 ## Test environment
 * OpenTX v2.2.4 on Taranis Q X7, Betaflight 4.0.5 on OmnibusF4 w/ R-XSR
 * Companion Sim v2.2.4 (*FrSky platforms only*)
 
-## Download
-Please go to the [releases page](https://github.com/Matze-Jung/opentx-lua-widgets/releases) to download the latest files.
-
 ## File structure
-`TELEMETRY/` telemetry screen examples
+- `TELEMETRY/` telemetry screen examples
 
-`WIDGETS/` widgets for X7/X9 displays, see script head for details on each
-- `X9/` widgets for X9 displays only
-- `X9/BMP/` images
-- `widgets.lua` main script
+
+- `WIDGETS/` widgets for X7/X9 displays, see script head for details on each
+    * `X9/` widgets for X9 displays only
+    * `widgets.lua` main script
 
 ## API
 ### Screen layout
-`layout` table
+The `layout` table:
 
 | Name | Type | Description |
 | - | - | - |
-| **column** | table |  |
-| **cell** | table |  |
-| cell.**id** | string | (path/) widget name |
+| **column** | table | - |
+| **cell** | table | - |
+| cell.**id** | string *(optional, default empty zone)* | path/widget name without extension, `id=""` draws a rectangle |
 | cell.**opts** | table *(optional)* | pass configuration options to widget |
-| cell.opts.**parent** | bool *(optional, default `false`)* | set `true` to load a nested widget |
+| cell.opts.**parent** | bool *(optional, default `false`)* | set `true` to load a nested grid |
 
 ```lua
 local layout = {
@@ -50,7 +49,10 @@ local layout = {
     }
 }
 ```
+![alt text](img/layout.gif "X7 display")
+![alt text](img/layoutX9.gif "X9 display")
 
+##  
 `SCRIPTS/TELEMETRY/lynix.lua`
 
 ```lua
@@ -74,10 +76,12 @@ local layout = {
     },
 }
 ```
-### Options
-Widgets can have different options depending on how they're designed. Look at the head of the widget script for where you can put it and further details *(eg [value.lua](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/WIDGETS/value.lua))*.
+![alt text](img/lynix.lua.gif "X9 by lynix")
 
-Some common parameters would be:
+### Options
+Widgets can have different options depending on how they're designed. Look at the head description of the widget script for further details *(eg [value.lua](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/WIDGETS/value.lua))*.
+
+Some common parameters are:
 
 | Name | Type | Description |
 | - | - | - |
@@ -102,10 +106,13 @@ local w = assert(loadScript("/SCRIPTS/WIDGETS/widgets.lua"))(layout, 1)
 ```
 ... and the second parameter of then main script call to a `true` value inside the child layout.
 
+![alt text](img/layout_nested.gif "X7 display")
+![alt text](img/layoutX9_nested.gif "X9 display")
+
 ## Installing
 Unzip the files from the release package and drag the contents to your radio. If you do this correctly, the `SCRIPTS` directory will merge with your existing directories, placing the scripts in their appropriate paths.
 
-The `src` directory is not required for use and is only available for maintenance of the code.  While it may work to use this directory, you may encounter memory issues on your transmitter.
+The `src` directory is not required for use and is only available for maintenance of the code. While it may work to use this directory, you may encounter some issues.
 
 How to copy to the Transmitter:
 
