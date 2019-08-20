@@ -24,6 +24,9 @@
         src: function or sensor-ID string/number (optional, default "tx-voltage")
           - Data source
 
+        lbl: string (optional)
+          - Label text
+
         unit: string (optional)
           - Unit sign drawn behind the value
           - Set to "timer", to display as timer (00:00)

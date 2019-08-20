@@ -62,12 +62,17 @@ local function run(event, zone)
 
         for row=1, #widgets[col] do
             local wdgt = widgets[col][row]
---lcd.drawRectangle(x, y, w, h)
 
-            if wdgt.opts.parent then
-                wdgt.func.run(event, {x=x, y=y, w=w , h=h})
-            else
-                wdgt.func.run({x=x, y=y, w=w , h=h}, event, wdgt.opts)
+            if wdgt.opts then
+                if not wdgt.func then
+                    lcd.drawRectangle(x, y, w, h)
+                else
+                    if wdgt.opts.parent then
+                        wdgt.func.run(event, {x=x, y=y, w=w , h=h})
+                    else
+                        wdgt.func.run({x=x, y=y, w=w , h=h}, event, wdgt.opts)
+                    end
+                end
             end
 
             y = y+h
@@ -93,10 +98,12 @@ local function init()
             local w = { run=function()end }
             if c.id then
                 w.opts = c.opts or {}
-                w.func = assert(loadScript("/SCRIPTS/WIDGETS/"..(c.id)..".lua"))(event)
+                w.func = c.id ~= ""
+                    and assert(loadScript("/SCRIPTS/WIDGETS/"..(c.id)..".lua"))(event)
+                    or false
 
                 -- initalize widget
-                if w.func.init then w.func.init() end
+                if w.func and w.func.init then w.func.init() end
             end
             widgets[col][row] = w
         end
