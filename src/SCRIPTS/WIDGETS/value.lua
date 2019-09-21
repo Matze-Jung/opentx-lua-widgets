@@ -33,7 +33,8 @@
           - Set to "%", to output percent of 'src', calculated with 'min' and 'max'
 
         style: int (optional, default 0)
-          - Text format
+          - Text Attributes: 0, DBLSIZE, MIDSIZE, SMLSIZE, INVERS, BLINK, XXLSIZE, LEFT
+            All att values can be combined together using the + character. ie BLINK + DBLSIZE
 
         max: number (only optional, if 'unit' is not "%")
           - Largest value
@@ -56,7 +57,7 @@ local function valueWidget(zone, event, opts)
         or getValue(opts.src)
     local tOfs = 0
 
-    if (opts.min and opts.min > val) or (opts.max and opts.max < val) then
+    if (opts.min and opts.min >= val) or (opts.max and opts.max <= val) then
         format = format + BLINK
     end
 
