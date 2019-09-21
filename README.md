@@ -1,19 +1,20 @@
-# opentx-lua-widgets
+# opentx-lua-widgets [![Build Status](https://travis-ci.org/Matze-Jung/opentx-lua-widgets.svg?branch=master)](https://travis-ci.org/Matze-Jung/opentx-lua-widgets)
+
 **Telemetry screen grid-system for OpenTX**
 
-slim, auto scaling, nestable, open
+slim, auto-scaling, nestable, open
 
-![alt text](img/x7home.lua.gif "TELEMETRY/x7home.lua")
-![alt text](img/wdgts2.lua.gif "TELEMETRY/wdgts2.lua")
+[![alt text](img/x7home.lua.gif "TELEMETRY/x7home.lua (X7 display)")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/TELEMETRY/x7home.lua)
+[![alt text](img/wdgts2.lua.gif "TELEMETRY/wdgts2.lua (X7 display)")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/TELEMETRY/wdgts2.lua)
 
->  \**graph-widget integrates from [opentx-lua-running-graphs](https://github.com/Matze-Jung/opentx-lua-running-graphs) package*
+>  \**graph-widget integrates from [opentx-lua-running-graphs](https://github.com/Matze-Jung/opentx-lua-running-graphs)*
 
 ## Download
 Please go to the [releases page](https://github.com/Matze-Jung/opentx-lua-widgets/releases) to download the latest files.
 
 ## Test environment
-* OpenTX v2.2.4 on Taranis Q X7, Betaflight 4.0.5 on OmnibusF4 w/ R-XSR
-* Companion Sim v2.2.4 (*FrSky platforms only*)
+* [OpenTX v2.2.4](https://github.com/opentx/opentx) on Taranis Q X7, [Betaflight 4.0.5](https://github.com/betaflight/betaflight) on OmnibusF4 w/ R-XSR
+* [Companion Sim v2.2.4](https://www.open-tx.org/) (*FrSky platforms only*)
 
 ## File structure
 - `TELEMETRY/` telemetry screen examples
@@ -49,8 +50,9 @@ local layout = {
     }
 }
 ```
-![alt text](img/layout.gif "X7 display")
-![alt text](img/layoutX9.gif "X9 display")
+**X7** [![alt text](img/layout.gif "Example grid on X7 display")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/README.md#screen-layout)
+
+**X9** [![alt text](img/layoutX9.gif "Example grid on X9 display")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/README.md#screen-layout)
 
 ##  
 `SCRIPTS/TELEMETRY/lynix.lua`
@@ -76,10 +78,11 @@ local layout = {
     },
 }
 ```
-![alt text](img/lynix.lua.gif "X9 by lynix")
+[![alt text](img/lynix.lua.gif "X9 by lynix")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/TELEMETRY/lynix.lua)
 
 ### Options
-Widgets can have different options depending on how they're designed. Look at the head description of the widget script for further details *(eg [value.lua](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/WIDGETS/value.lua))*.
+Widgets can have different options depending on how they're designed. Look at the head description of the widget scripts for further details (like [value.lua](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/WIDGETS/value.lua)).
+Use [tmpl.lua](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/WIDGETS/tmpl.lua) to create new widgets from scratch.
 
 Some common parameters are:
 
@@ -96,7 +99,7 @@ Some common parameters are:
         { id="../TELEMETRY/wdgts2_sub", opts={parent=1} },
 [...]
 ```
-To call a nested/sub grid, set `opts.parent` to a `true` value in the parent layout ...
+To create a nested grid, set `opts.parent` to a `true` value in the parent layout ...
 
 `SCRIPTS/TELEMETRY/wdgts2_sub.lua`
 ```lua
@@ -104,10 +107,13 @@ To call a nested/sub grid, set `opts.parent` to a `true` value in the parent lay
 local w = assert(loadScript("/SCRIPTS/WIDGETS/widgets.lua"))(layout, 1)
 [...]
 ```
-... and the second parameter of then main script call to a `true` value inside the child layout.
+... and the second parameter of the main script call to a `true` value inside the encapsulated layout.
 
-![alt text](img/layout_nested.gif "X7 display")
-![alt text](img/layoutX9_nested.gif "X9 display")
+> *Try to use padding instead of nesting where possible to preserve memory.*
+
+**X7** [![alt text](img/layout_nested.gif "Example nested grid on X7 display")](https://github.com/Matze-Jung/opentx-lua-widgets#nesting)
+
+**X9** [![alt text](img/layoutX9_nested.gif "Example nested grid on X9 display")](https://github.com/Matze-Jung/opentx-lua-widgets#nesting)
 
 ## Installing
 Unzip the files from the release package and drag the contents to your radio. If you do this correctly, the `SCRIPTS` directory will merge with your existing directories, placing the scripts in their appropriate paths.
@@ -141,7 +147,7 @@ Setting up the script as a telemetry page will enable access at the press of a b
 6. Select one of the listed telemetry scripts and hit [ENT].
 7. Long-press [EXIT] to return to your model screen.
 
-![alt text](img/DISPLAY.gif "DISPLAY")
+[![alt text](img/DISPLAY.gif "DISPLAY")](https://github.com/Matze-Jung/opentx-lua-widgets#setup)
 
 To invoke the script, simply long-press the [PAGE] button from the model screen.
 
@@ -154,5 +160,10 @@ If you just copied the files, launched the script and a `not enough memory` warn
 - Run `npm start`, `make` or `./bin/build.sh min` from the root folder with appropriate privileges (omit the `min` switch to build without minifying)
 - Compiled/minified files will be created at the `obj` folder. Copy the files to your transmitter.
 
+## Resources
+* [Manual for OpenTX 2.2](https://opentx.gitbooks.io/manual-for-opentx-2-2)
+* [OpenTX 2.2 Lua Reference Guide](https://opentx.gitbooks.io/opentx-2-2-lua-reference-guide/)
+* [OpenTX Taranis Manual](https://opentx.gitbooks.io/opentx-taranis-manual)
+
 ##  
-*Inspired by olimetry.lua by Ollicious (bowdown@gmx.net)*
+*This Project is inspired from [olimetry.lua](https://www.youtube.com/watch?v=dMNDhq2QJv4) by Ollicious (bowdown@gmx.net)*
