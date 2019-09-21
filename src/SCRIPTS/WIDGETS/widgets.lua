@@ -78,7 +78,7 @@ local function run(event, zone)
             y = y+h
         end
 
-        y = 0
+        y = (zone and zone.y) or 0
         x = x + w
     end
 end
