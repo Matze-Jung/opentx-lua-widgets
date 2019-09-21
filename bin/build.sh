@@ -93,7 +93,7 @@ if [[ $LAST_FAILURES == '' ]]; then
     fi
 
     echo
-    echo -e "\e[1m\e[39m[\e[32mSUCCESSFUL\e[39m] \e[21mAll lua files built successfully!\e[21m\e[1m\e[0m\e[0m"
+    echo -e "\e[1m\e[39m[\e[32mSUCCESSFUL\e[39m] \e[21mAll files built successfully!\e[21m\e[1m\e[0m\e[0m"
 else
     echo "$LAST_FAILURES"$'\r' >> ".builderr"
     echo
