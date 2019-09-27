@@ -1,8 +1,12 @@
 #!/bin/bash
 
 if [ -d .git ]; then
-    ORIGIN=$(basename `git config --get remote.origin.url`)
-    ARCHIVE="releases/${ORIGIN//.git/}_$(git describe --abbrev=0 --tag).zip"
+    ORIGIN="`git config --get remote.origin.url`"
+    if [[ $ORIGIN == '' ]]; then
+        ORIGIN="`pwd`"
+    fi
+
+    ARCHIVE="releases/$(basename ${ORIGIN//.git/})_$(git describe --abbrev=0 --tag).zip"
 
     echo "creating archive ..."
     mkdir -p releases
