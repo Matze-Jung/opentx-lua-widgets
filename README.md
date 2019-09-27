@@ -4,8 +4,8 @@
 
 slim, auto-scaling, nestable, open
 
-[![alt text](img/x7home.lua.gif "TELEMETRY/x7home.lua (X7 display)")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/TELEMETRY/x7home.lua)
-[![alt text](img/wdgts2.lua.gif "TELEMETRY/wdgts2.lua (X7 display)")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/TELEMETRY/wdgts2.lua)
+[![](img/x7home.lua.gif "TELEMETRY/x7home.lua (X7 display)")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/TELEMETRY/x7home.lua)
+[![](img/wdgts2.lua.gif "TELEMETRY/wdgts2.lua (X7 display)")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/TELEMETRY/wdgts2.lua)
 
 >  \**graph-widget integrates from [opentx-lua-running-graphs](https://github.com/Matze-Jung/opentx-lua-running-graphs)*
 
@@ -50,9 +50,9 @@ local layout = {
     }
 }
 ```
-**X7** [![alt text](img/layout.gif "Example grid on X7 display")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/README.md#screen-layout)
+**X7** [![](img/layout.gif "Example grid on X7 display")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/README.md#screen-layout)
 
-**X9** [![alt text](img/layoutX9.gif "Example grid on X9 display")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/README.md#screen-layout)
+**X9** [![](img/layoutX9.gif "Example grid on X9 display")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/README.md#screen-layout)
 
 ##  
 `SCRIPTS/TELEMETRY/lynix.lua`
@@ -78,7 +78,7 @@ local layout = {
     },
 }
 ```
-[![alt text](img/lynix.lua.gif "X9 by lynix")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/TELEMETRY/lynix.lua)
+[![](img/lynix.lua.gif "X9 by lynix")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/TELEMETRY/lynix.lua)
 
 ### Options
 Widgets can have different options depending on how they're designed. Look at the head description of the widget scripts for further details (like [value.lua](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/WIDGETS/value.lua)).
@@ -111,9 +111,9 @@ local w = assert(loadScript("/SCRIPTS/WIDGETS/widgets.lua"))(layout, 1)
 
 > *Try to use padding instead of nesting where possible to preserve memory.*
 
-**X7** [![alt text](img/layout_nested.gif "Example nested grid on X7 display")](https://github.com/Matze-Jung/opentx-lua-widgets#nesting)
+**X7** [![](img/layout_nested.gif "Example nested grid on X7 display")](https://github.com/Matze-Jung/opentx-lua-widgets#nesting)
 
-**X9** [![alt text](img/layoutX9_nested.gif "Example nested grid on X9 display")](https://github.com/Matze-Jung/opentx-lua-widgets#nesting)
+**X9** [![](img/layoutX9_nested.gif "Example nested grid on X9 display")](https://github.com/Matze-Jung/opentx-lua-widgets#nesting)
 
 ## Installing
 Unzip the files from the release package and drag the contents to your radio. If you do this correctly, the `SCRIPTS` directory will merge with your existing directories, placing the scripts in their appropriate paths.
@@ -147,7 +147,7 @@ Setting up the script as a telemetry page will enable access at the press of a b
 6. Select one of the listed telemetry scripts and hit [ENT].
 7. Long-press [EXIT] to return to your model screen.
 
-[![alt text](img/DISPLAY.gif "DISPLAY")](https://github.com/Matze-Jung/opentx-lua-widgets#setup)
+[![](img/DISPLAY.gif "DISPLAY")](https://github.com/Matze-Jung/opentx-lua-widgets#setup)
 
 To invoke the script, simply long-press the [PAGE] button from the model screen.
 
