@@ -4,7 +4,8 @@
 
 slim, auto-scaling, nestable, open
 
-[![](img/x7home.lua.gif "TELEMETRY/x7home.lua (X7 display)")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/TELEMETRY/x7home.lua)
+[![](img/wdgts1.lua.gif "TELEMETRY/wdgts1.lua (X7 display)")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/TELEMETRY/wdgts1.lua)
+[![](img/wdgts3.lua.gif "TELEMETRY/wdgts3.lua (X7 display)")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/TELEMETRY/wdgts3.lua)
 [![](img/wdgts2.lua.gif "TELEMETRY/wdgts2.lua (X7 display)")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/TELEMETRY/wdgts2.lua)
 
 >  \**graph-widget integrates from [opentx-lua-running-graphs](https://github.com/Matze-Jung/opentx-lua-running-graphs)*
@@ -13,8 +14,10 @@ slim, auto-scaling, nestable, open
 Please go to the [releases page](https://github.com/Matze-Jung/opentx-lua-widgets/releases) to download the latest files.
 
 ## Test environment
-* [OpenTX v2.2.4](https://github.com/opentx/opentx) on Taranis Q X7, [Betaflight 4.0.5](https://github.com/betaflight/betaflight) on OmnibusF4 w/ R-XSR
-* [Companion Sim v2.2.4](https://www.open-tx.org/) (*FrSky platforms only*)
+* [OpenTX v2.3.1](https://github.com/opentx/opentx)* on Taranis Q X7
+* [OpenTX Companion v2.3.1](https://www.open-tx.org/) (*FrSky platforms only*)
+
+> \**some features with text attributes had to be temporarily revert cause of an [issue](https://github.com/opentx/opentx/issues/6957) since OpenTX v2.3.1*
 
 ## File structure
 - `TELEMETRY/` telemetry screen examples
@@ -90,7 +93,7 @@ Some common parameters are:
 | - | - | - |
 | opts.**src** | function *or* sensor-ID string/number | Data source |
 | opts.**lbl** | string *(optional)* | Label text at top |
-| opts.**p** | table *(optional, defaults depend)* | Padding between content and widget boundaries in px `[t=top, r=right, b=bottom, l=left]` |
+| opts.**m** | table *(optional, defaults depend)* | Cell margin in px `[t=top, r=right, b=bottom, l=left]` |
 
 ### Nesting
 `SCRIPTS/TELEMETRY/wdgts2.lua`
@@ -109,7 +112,7 @@ local w = assert(loadScript("/SCRIPTS/WIDGETS/widgets.lua"))(layout, 1)
 ```
 ... and the second parameter of the main script call to a `true` value inside the encapsulated layout.
 
-> *Try to use padding instead of nesting where possible to preserve memory.*
+> *Try to use margin instead of nesting where possible to preserve memory.*
 
 **X7** [![](img/layout_nested.gif "Example nested grid on X7 display")](https://github.com/Matze-Jung/opentx-lua-widgets#nesting)
 
@@ -152,7 +155,7 @@ Setting up the script as a telemetry page will enable access at the press of a b
 To invoke the script, simply long-press the [PAGE] button from the model screen.
 
 ### Memory warning
-If you just copied the files, launched the script and a `not enough memory` warning appears, probably restarting the radio is the only thing to do here. If OpenTX still complains, try to delete all `.luac` files and make shure that you've did build OpenTX with the luac-option checked.
+If you just copied the files, launched the script and a `not enough memory` warning appears, probably restarting the radio is the only thing to do here (maybe several times). If OpenTX still complains try to delete all `.luac` files and restart.
 
 ## Building from source
 - Be sure to have `LUA 5.2`and `Node.js` installed

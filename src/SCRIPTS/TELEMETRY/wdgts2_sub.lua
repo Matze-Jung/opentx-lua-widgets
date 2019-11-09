@@ -1,6 +1,3 @@
--- NOTE: Layout requires the opentx-lua-running-graphs package installed
---       and the graphs-script running. https://github.com/Matze-Jung/opentx-lua-running-graphs
-
 local layout = {
     {
         {
