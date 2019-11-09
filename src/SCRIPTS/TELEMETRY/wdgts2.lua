@@ -17,7 +17,7 @@ local layout = {
         },
     },
     {
-        { id="batt2", opts={
+        { id="batt3", opts={
                 src="tx-voltage",
                 lbl="TX Bat",
                 m={r=0,l=2},
