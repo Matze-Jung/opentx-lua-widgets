@@ -1,6 +1,4 @@
 {
-  "name": "betaflight-tx-lua-scripts",
-  "version": "1.3.0",
   "scripts": {
     "start": "bash bin/build.sh min",
     "pack": "bash bin/arc.sh"
