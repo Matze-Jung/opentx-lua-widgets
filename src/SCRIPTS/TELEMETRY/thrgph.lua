@@ -21,7 +21,7 @@ local layout = {
         {
             id="graph",
             opts={
-                uid=8,
+                uid=9,
                 src=function() return getGraphAverage(7) end,
                 lbl="THR AVRG",
                 unit="%",

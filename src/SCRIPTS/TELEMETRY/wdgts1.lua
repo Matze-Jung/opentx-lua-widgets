@@ -1,15 +1,53 @@
 local layout = {
     {
-        { id="rssi" },
+        {
+            id="fmode",
+            opts={
+                lbl="F-Mode",
+                style=MIDSIZE,
+                m={r=7},
+            }
+        },
+        {
+            id="armcopt",
+            opts={
+                src=function() return getValue("sb") > 512 end,
+                -- src=function() return getValue("ls4") > 0 end,
+                -- notxt=true,
+                m={t=-4,l=6},
+            }
+        },
     },
     {
-        { id="rssi2" },
-    },
-    {
-        { id="batt2" },
-    },
-    {
-        { id="batt3", opts={src="tx-voltage", lbl="TX Bat", p={r=0}} },
+        {
+            id="stairs",
+            opts={
+                lbl="RSSI",
+                src=function()
+                    local db, low, crit = getRSSI()
+                    return (db - crit) * 100 / (91-crit)
+                end,
+                stairs=16,
+                space=0,
+                m={r=0,b=7,l=-5},
+            }
+        },
+        {
+            id="graph", opts={
+                uid=10,
+                src="Tmp1",
+                lbl="FC Temp",
+                unit="\64C",
+                speed=600,
+                min=30,
+                max=90,
+                lblmin="30",
+                lblmax="90",
+                -- crit=80,
+                m={t=-4,b=0,l=-22},
+                p={t=1,l=11},
+            }
+        },
     },
 }
 

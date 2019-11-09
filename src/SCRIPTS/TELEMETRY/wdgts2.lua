@@ -4,9 +4,6 @@
 local rssi, alarm_low, alarm_crit = getRSSI()
 local layout = {
     {
-        { id="batt3", opts={src="tx-voltage", lbl="TX Bat"} },
-    },
-    {
         { id="../TELEMETRY/wdgts2_sub", opts={parent=1} }, -- to call a nested layout, set opts.parent to a true value
         { id="graph", opts={
                 uid=5,
@@ -15,7 +12,15 @@ local layout = {
                 min=alarm_crit,
                 max=99,
                 crit=alarm_low,
-                p={t=6,l=1}
+                m={t=7,r=-1,b=-1,l=1},
+            }
+        },
+    },
+    {
+        { id="batt2", opts={
+                src="tx-voltage",
+                lbl="TX Bat",
+                m={r=0,l=2},
             }
         },
     },

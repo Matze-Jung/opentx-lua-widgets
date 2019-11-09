@@ -9,7 +9,8 @@ local layout = {
                 src=function() return getValue("gvar9") > 0 and getValue("gvar9") or 100 end,
                 lbl="THR RNG",
                 unit="%",
-                style=SMLSIZE,
+                style=MIDSIZE,
+                m={r=12},
             }
         },
         {
@@ -20,7 +21,7 @@ local layout = {
                 unit="dB",
                 min=alarm_low,
                 style=SMLSIZE,
-                p={t=4,r=0},
+                m={t=6},
             }
         },
     },
@@ -31,20 +32,21 @@ local layout = {
                 lbl="LQ",
                 src=function()
                     local db, low, crit = getRSSI()
-                    return (db - crit) * 100 / (99-crit)
+                    return (db - crit) * 100 / (91-crit)
                 end,
                 space=0,
                 bg=true,
+                m={r=-1,b=-2,l=-10},
             }
         },
         {
             id="value",
             opts={
-                src=function() return getGraphAverage(5) end,
-                lbl="Avrg",
+                src=function() return getGraphRange(5).min..' / '..getGraphRange(5).max end,
+                lbl="min / max",
                 unit="dB",
                 style=SMLSIZE,
-                p={t=4,r=0},
+                m={t=6,r=-1},
             }
         },
     },

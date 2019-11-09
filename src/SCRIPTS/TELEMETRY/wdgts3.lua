@@ -1,16 +1,16 @@
 local layout = {
     {
         {
-            id="stairs",
+            id="h-bar",
             opts={
                 lbl="TX Batt",
                 src=function()
                     local settings = getGeneralSettings()
                     return math.floor(((getValue("tx-voltage")-settings.battMin) * 100 / (settings.battMax-settings.battMin)) + 0.5)
                 end,
-                stairs=8,
                 space=1,
-                p={r=0,b=3}
+                bg=true,
+                m={b=3},
             }
         },
         {
@@ -18,22 +18,21 @@ local layout = {
             opts={
                 lbl="VFAS",
                 src=function()
-                    local settings = getGeneralSettings()
                     local min = 14
                     local max = 16.8
                     return math.floor(((getValue("VFAS")-min) * 100 / (max-min)) + 0.5)
                 end,
                 stairs=8,
                 space=1,
-                p={r=0,b=3}
+                m={b=2},
             }
         },
         {
             id="value",
             opts={
-                lbl="THR Timer",
-                src=function() return getValue("timer1") end,
-                unit="timer",
+                lbl="Mem used",
+                src=function() return MEMORY or 0 end,
+                unit="B",
             }
         },
     },
@@ -43,17 +42,20 @@ local layout = {
             opts={
                 lbl="Cell (2S)",
                 src=function()
-                    return getValue("tx-voltage") / 2 * 100
+                    return string.format("%.2f", getValue("tx-voltage") / 2) .. "V"
+                    -- return getValue("tx-voltage") / 2 * 100
                 end,
-                unit="V",
-                min=3.5,
-                style=PREC2,
+                -- unit="V",
+                -- min=3.5,
+                -- style=PREC2+MIDSIZE,
+                style=MIDSIZE,
+                m={l=2},
             }
         },
         {
             id="value",
             opts={
-                lbl="Cells",
+                lbl="Cell ("..(type(getValue("Cels")) == "table" and #(getValue("Cels")) or "?").."S)",
                 src=function()
                     local cels = getValue("Cels")
                     if type(cels) == "number" then return 0 end
@@ -61,19 +63,24 @@ local layout = {
                     for i=1, #cels do
                         sum = sum + cels[i]
                     end
-                    return sum / #cels * 100
+                    -- return sum / #cels * 100
+                    return string.format("%.2f", sum / #cels) .. "V"
                 end,
-                unit="V",
-                min=3.5,
-                style=PREC2,
+                -- unit="V",
+                -- min=3.5,
+                -- style=PREC2+MIDSIZE,
+                style=MIDSIZE,
+                m={l=2},
             }
         },
         {
             id="value",
             opts={
-                src=function() return getValue("ls4") > 0 and "ARMED" or "" end,
-                style=BLINK + MIDSIZE,
-                p={t=4,l=1},
+                lbl="THR Timer",
+                src=function() return getValue("timer1") end,
+                unit="timer",
+                style=MIDSIZE,
+                m={l=2},
             }
         },
     },
