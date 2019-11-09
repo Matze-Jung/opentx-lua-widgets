@@ -29,8 +29,8 @@
         notxt: boolean (default false)
           - hide blinking `armed` text
 
-        p: table (optional, default [t=1, r=0, b=0, l=1])
-           - Padding between content and widget boundaries in px
+        m: table (optional, default [t=1, r=0, b=0, l=1])
+           - Cell margin in px
              (top, right, bottom, left)
 --]]
 
@@ -78,12 +78,12 @@ local function drawQuadcopter(_x, _y, opts)
     lcd.drawLine(_x + 6, _y + 23, _x + 23, _y + 6, SOLID, FORCE)
 
     -- Middle of Quad
-    lcd.drawFilledRectangle(_x + 12, _y + 8, 5, 13, SOLID)
+    lcd.drawFilledRectangle(_x + 12, _y + 7, 5, 15, SOLID)
     lcd.drawFilledRectangle(_x + 11, _y + 11, 7, 7, SOLID)
-    lcd.drawPoint(_x + 13, _y + 11)
-    lcd.drawPoint(_x + 13, _y + 17)
-    lcd.drawPoint(_x + 15, _y + 11)
-    lcd.drawPoint(_x + 15, _y + 17)
+    lcd.drawPoint(_x + 13, _y + 10)
+    lcd.drawPoint(_x + 13, _y + 18)
+    lcd.drawPoint(_x + 15, _y + 10)
+    lcd.drawPoint(_x + 15, _y + 18)
 
     if armed and not opts.notxt then
        lcd.drawText(_x + 2, _y + 11, "armed", SMLSIZE + BLINK)
@@ -100,14 +100,14 @@ local function drawQuadcopter(_x, _y, opts)
 end
 
 local function armWidget(zone, event, opts)
-    local p = { t=1, r=0, b=0, l=1 }
+    local m = { t=1, r=0, b=0, l=1 }
 
-    local z = calcWidgetZone(zone, p, opts.p or false)
+    local z = calcWidgetZone(zone, m, opts.m or false)
     armed = type(opts.src) == "function"
         and opts.src()
         or false
 
-    animTick = math.fmod(math.ceil(math.fmod(getTime() / 100, 2) * 10), 4)
+    animTick = math.fmod(math.ceil(math.fmod(getTime() / 100, 2) * 6), 4)
 
     drawQuadcopter(z.x, z.y, opts)
 end

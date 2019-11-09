@@ -33,17 +33,16 @@
         space: number (optional, default 1)
           - Space between stairs/bars in px
 
-        p: table (optional, default [t=0, r=2, b=0, l=0])
-           - Padding between content and widget boundaries in px
+        m: table (optional, default [t=0, r=2, b=0, l=0])
+           - Cell margin in px
              (top, right, bottom, left)
 --]]
 
 local function stairsWidget(zone, event, opts)
-    local p = { t=0, r=2, b=0, l=0 }
     local stairs = opts.stairs or 5
     local space = opts.space or 1
 
-    local z = calcWidgetZone(zone, p, opts.p or false)
+    local z = calcWidgetZone(zone, false, opts.m or false)
     local val = type(opts.src) == "function"
         and opts.src()
         or getValue(opts.src)

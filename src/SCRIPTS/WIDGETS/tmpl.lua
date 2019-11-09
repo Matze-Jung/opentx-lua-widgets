@@ -24,15 +24,15 @@
         src: function or sensor-ID string/number
           - Data source
 
-        p: table (optional, default [t=0, r=0, b=0, l=0])
-           - Padding between content and widget boundaries in px
+        m: table (optional, default [t=0, r=0, b=0, l=0])
+           - Cell margin in px
              (top, right, bottom, left)
 --]]
 
 local function tmplWidget(zone, event, opts)
-    local p = { t=0, r=0, b=0, l=0 }
+    local m = { t=0, r=0, b=0, l=0 }
 
-    local z = calcWidgetZone(zone, p, opts.p or false)
+    local z = calcWidgetZone(zone, m, opts.m or false)
     local val = type(opts.src) == "function"
         and opts.src()
         or getValue(opts.src)

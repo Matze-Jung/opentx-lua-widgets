@@ -34,8 +34,8 @@
         - Text Attributes: 0, DBLSIZE, MIDSIZE, SMLSIZE, INVERS, BLINK, XXLSIZE, LEFT
           All att values can be combined together using the + character. ie BLINK + DBLSIZE
 
-      p: table (optional, default [t=0, r=2, b=0, l=0])
-         - Padding between content and widget boundaries in px
+      m: table (optional, default [t=0, r=2, b=0, l=0])
+         - Cell margin in px
            (top, right, bottom, left)
 --]]
 
@@ -48,17 +48,17 @@ local function flightModeWidget(zone, event, opts)
         _opts[i] = opt
     end
 
-    local val = getValue("ch5") -- switchname, global variable or other source
+    local val = getValue("sa") -- switchname, global variable or other source
 
     _opts.src = function() -- returns the string
         if val < -512 then
             return "Turtle"
-        elseif val > -100 and val < 100 then
+        elseif val > -51 and val < 51 then
             return "Acro"
         elseif val > 512 then
             return "Horizon"
         end
-        return "?"
+        return "-"
     end
 
    valueWidget.run(zone, event, _opts)

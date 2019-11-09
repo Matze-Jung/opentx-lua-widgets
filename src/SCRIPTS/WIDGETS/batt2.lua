@@ -30,8 +30,8 @@
         min: number (only optional, if 'src' is default)
           - Smallest value
 
-        p: table (optional, default [t=0, r=0, b=0, l=0])
-           - Padding between content and widget boundaries in px
+        m: table (optional, default [t=0, r=0, b=0, l=0])
+           - Cell margin in px
              (top, right, bottom, left)
 --]]
 
@@ -41,10 +41,10 @@ local function batteryWidget(zone, event, opts)
     local settings = getGeneralSettings()
     local maxV = opts.max or settings.battMax
     local minV = opts.min or settings.battMin
-    local format = PREC1 + LEFT
+    local format = 0
     local cellV = getValue(src)
     local perc =  math.floor(((cellV-minV) * 100 / (maxV-minV)) + 0.5)
-    local z = calcWidgetZone(zone, p, opts.p or false)
+    local z = calcWidgetZone(zone, m, opts.m or false)
 
     if perc <= 0 then perc = 0 end
 
@@ -62,8 +62,7 @@ local function batteryWidget(zone, event, opts)
         lcd.drawLine(z.x+11, z.y+7+i-1, z.x+19, z.y+7+i-1, SOLID, 0)
         i = i-3
     end
-    lcd.drawNumber(z.x+7, z.y+54, cellV*10, format)
-    lcd.drawText(lcd.getLastPos(), z.y+54, "V", format)
+    lcd.drawText(z.x+7, z.y+54, string.format("%.1f", cellV) .. "V", format)
 end
 
 return { run=batteryWidget }

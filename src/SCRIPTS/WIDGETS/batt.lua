@@ -30,8 +30,8 @@
         min: number (only optional, if 'src' is default)
           - Smallest value
 
-        p: table (optional, default [t=0, r=0, b=0, l=0])
-           - Padding between content and widget boundaries in px
+        m: table (optional, default [t=0, r=0, b=0, l=0])
+           - Cell margin in px
              (top, right, bottom, left)
 --]]
 
@@ -43,7 +43,7 @@ local function batteryWidget(zone, event, opts)
     local minV = opts.min or settings.battMin
     local cellRange = maxV - minV
     local availV = 0
-    local z = calcWidgetZone(zone, p, opts.p or false)
+    local z = calcWidgetZone(zone, m, opts.m or false)
     local cellV = getValue(src)
 
     lcd.drawFilledRectangle(z.x+13, z.y+7, 5, 2, 0)
@@ -68,12 +68,11 @@ local function batteryWidget(zone, event, opts)
         i = i-2
     end
 
-    local style = PREC2 + LEFT
+    local style = 0
     if (cellV < minV) then
         style = style + BLINK
     end
-    lcd.drawNumber(z.x+5, z.y+53, cellV*100, style)
-    lcd.drawText(lcd.getLastPos(), z.y+53, "V", 0)
+    lcd.drawText(z.x+7, z.y+54, string.format("%.1f", cellV) .. "V", style)
 end
 
 return { run=batteryWidget }

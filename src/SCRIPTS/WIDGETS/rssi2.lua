@@ -21,18 +21,18 @@
     opts: table
       - Configurations
 
-        p: table (optional, default [t=0, r=0, b=0, l=0])
-           - Padding between content and widget boundaries in px
+        m: table (optional, default [t=0, r=0, b=0, l=0])
+           - Cell margin in px
              (top, right, bottom, left)
 --]]
 
 local function rssiWidget(zone, event, opts)
     local pxRng = 45
 
-    local z = calcWidgetZone(zone, false, opts.p or false)
+    local z = calcWidgetZone(zone, false, opts.m or false)
     local db, alarm_low, alarm_crit = getRSSI()
-    local perc = math.floor(((db-alarm_crit) * 100 / (99-alarm_crit)) + .5)
-    local format = PREC1 + LEFT
+    local perc = math.floor(((db-alarm_crit) * 100 / (91-alarm_crit)) + .5)
+    local format = 0
 
     if perc <= 0 then perc = 0 end
 
