@@ -4,6 +4,9 @@
 
 slim, auto-scaling, nestable, open
 
+###  
+Create your personal telemetry screens with ease:
+
 [![](img/wdgts1.lua.gif "TELEMETRY/wdgts1.lua (X7 display)")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/TELEMETRY/wdgts1.lua)
 [![](img/wdgts3.lua.gif "TELEMETRY/wdgts3.lua (X7 display)")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/TELEMETRY/wdgts3.lua)
 [![](img/wdgts2.lua.gif "TELEMETRY/wdgts2.lua (X7 display)")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/TELEMETRY/wdgts2.lua)
@@ -14,10 +17,8 @@ slim, auto-scaling, nestable, open
 Please go to the [releases page](https://github.com/Matze-Jung/opentx-lua-widgets/releases) to download the latest files.
 
 ## Test environment
-* [OpenTX v2.3.1](https://github.com/opentx/opentx)* on Taranis Q X7
-* [OpenTX Companion v2.3.1](https://www.open-tx.org/) (*FrSky platforms only*)
-
-> \**some features with text attributes had to be temporarily revert cause of an [issue](https://github.com/opentx/opentx/issues/6957) since OpenTX v2.3.1*
+* [OpenTX v2.3.2](https://github.com/opentx/opentx) on FrSky Taranis Q X7
+* [OpenTX Companion v2.3.2](https://www.open-tx.org/) (FrSky platforms only)
 
 ## File structure
 - `TELEMETRY/` telemetry screen examples
@@ -84,7 +85,7 @@ local layout = {
 [![](img/lynix.lua.gif "X9 by lynix")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/TELEMETRY/lynix.lua)
 
 ### Options
-Widgets can have different options depending on how they're designed. Look at the head description of the widget scripts for further details (like [value.lua](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/WIDGETS/value.lua)).
+Widgets have different options depending on how they're designed. Look at the head description of the widget scripts for further details (like [value.lua](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/WIDGETS/value.lua)).
 Use [tmpl.lua](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/WIDGETS/tmpl.lua) to create new widgets from scratch.
 
 Some common parameters are:
@@ -94,6 +95,8 @@ Some common parameters are:
 | opts.**src** | function *or* sensor-ID string/number | Data source |
 | opts.**lbl** | string *(optional)* | Label text at top |
 | opts.**m** | table *(optional, defaults depend)* | Cell margin in px `[t=top, r=right, b=bottom, l=left]` |
+
+> *Currently options are not implemented in X9 widgets.*
 
 ### Nesting
 `SCRIPTS/TELEMETRY/wdgts2.lua`
@@ -121,9 +124,9 @@ local w = assert(loadScript("/SCRIPTS/WIDGETS/widgets.lua"))(layout, 1)
 ## Installing
 Unzip the files from the release package and drag the contents to your radio. If you do this correctly, the `SCRIPTS` directory will merge with your existing directories, placing the scripts in their appropriate paths.
 
-The `src` directory is not required for use and is only available for maintenance of the code. While it may work to use this directory, you may encounter some issues.
+The `src` directory is not required for use and is only available for maintenance of the code. However, the use of the `src` directory may work because the current OpenTX compiles its LUAC files at runtime.
 
-How to copy to the Transmitter:
+**How to copy to the Transmitter:**
 
 **A**) Bootloader Method
 1. Power off your transmitter and power it back on in boot loader mode.
@@ -155,7 +158,7 @@ Setting up the script as a telemetry page will enable access at the press of a b
 To invoke the script, simply long-press the [PAGE] button from the model screen.
 
 ### Memory warning
-If you just copied the files, launched the script and a `not enough memory` warning appears, probably restarting the radio is the only thing to do here (maybe several times). If OpenTX still complains try to delete all `.luac` files and restart.
+If you just copied the files, launched the script and a `not enough memory` warning appears at some point, probably restarting the radio is the only thing to do here. If OpenTX is still complaining, try reboot the system several times.
 
 ## Building from source
 - Be sure to have `LUA 5.2`and `Node.js` installed
