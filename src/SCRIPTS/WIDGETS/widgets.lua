@@ -1,13 +1,10 @@
 local widgetWidthSingle = 32
+
 local widgetWidthMulti = 0
 local numSingleCols = 0
 local numMultiCols  = 0
 local widgets = {}
 local layout, nested = ...
-
-local lcd=LCD or lcd
-local LCD_W = lcd.W or LCD_W
-local LCD_H = lcd.H or LCD_H
 
 function calcWidgetZone(z, t, t2)
     if not t then
