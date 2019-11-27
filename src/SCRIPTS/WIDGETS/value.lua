@@ -48,15 +48,18 @@
 --]]
 
 local function valueWidget(zone, event, opts)
-    local format = opts.style or 0
-
+    local formatNum = opts.style or 0
+    local format = bit32.btest(formatNum, PREC1) and bit32.bxor(formatNum, PREC1) or formatNum
     local z = calcWidgetZone(zone, false, opts.m or false)
     local val = type(opts.src) == "function"
         and opts.src()
         or getValue(opts.src)
 
     if (opts.min and opts.min >= val) or (opts.max and opts.max <= val) then
-        format = format + BLINK
+        if not bit32.btest(format, BLINK) then
+          format = format + BLINK
+          formatNum = formatNum + BLINK
+        end
     end
 
     if opts.unit == "%" and opts.max and opts.min then
@@ -78,7 +81,7 @@ local function valueWidget(zone, event, opts)
         if type(val) == "string" then
             lcd.drawText(z.x + 1, z.y, val, format)
         else
-            lcd.drawNumber(z.x + 1, z.y, val, format)
+            lcd.drawNumber(z.x + 1, z.y, val, formatNum)
         end
         lcd.drawText(lcd.getLastPos() + 1, z.y, opts.unit or "", format)
     end
