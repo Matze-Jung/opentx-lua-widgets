@@ -42,13 +42,11 @@ local layout = {
             opts={
                 lbl="Cell (2S)",
                 src=function()
-                    return string.format("%.2f", getValue("tx-voltage") / 2) .. "V"
-                    -- return getValue("tx-voltage") / 2 * 100
+                    return getValue("tx-voltage") / 2 * 100
                 end,
-                -- unit="V",
-                -- min=3.5,
-                -- style=PREC2+MIDSIZE,
-                style=MIDSIZE,
+                unit="V",
+                min=350,
+                style=PREC2+MIDSIZE,
                 m={l=2},
             }
         },
@@ -63,13 +61,11 @@ local layout = {
                     for i=1, #cels do
                         sum = sum + cels[i]
                     end
-                    -- return sum / #cels * 100
-                    return string.format("%.2f", sum / #cels) .. "V"
+                    return sum / #cels * 100
                 end,
-                -- unit="V",
-                -- min=3.5,
-                -- style=PREC2+MIDSIZE,
-                style=MIDSIZE,
+                unit="V",
+                min=350,
+                style=PREC2+MIDSIZE,
                 m={l=2},
             }
         },
