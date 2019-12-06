@@ -61,8 +61,12 @@ local function run(event, zone)
             local wdgt = widgets[col][row]
 
             if wdgt.opts then
-                if not wdgt.func then
-                    lcd.drawRectangle(x, y, w, h)
+                if type(wdgt.func) ~= "table" then
+                    if wdgt.func then
+                        lcd.drawText(x+w/2-4, y+h/2-4, "id?", SMLSIZE+BLINK)
+                    else
+                        lcd.drawRectangle(x, y, w, h)
+                    end
                 else
                     if wdgt.opts.parent then
                         wdgt.func.run(event, {x=x, y=y, w=w , h=h})
@@ -80,6 +84,16 @@ local function run(event, zone)
     end
 end
 
+local function file_exists(name)
+    local f=io.open(name,"r")
+    if f~=nil then
+        io.close(f)
+        return true
+    end
+
+    return
+end
+
 local function init()
     for col=1, #layout, 1
     do
@@ -94,13 +108,22 @@ local function init()
             local c = layout[col][row]
             local w = { run=function()end }
             if c.id then
-                w.opts = c.opts or {}
-                w.func = c.id ~= ""
-                    and assert(loadScript("/SCRIPTS/WIDGETS/"..(c.id)..".lua"))(event)
-                    or false
+                local wdgtFile = "/SCRIPTS/WIDGETS/"..(c.id)..".lua"
 
-                -- initalize widget
-                if w.func and w.func.init then w.func.init() end
+                w.opts = c.opts or {}
+                w.func = false
+
+                if c.id ~= "" then
+                    if file_exists(wdgtFile) then
+                        w.func = assert(loadScript(wdgtFile))(event)
+
+                        -- initalize widget
+                        if w.func and w.func.init then w.func.init() end
+                    else
+                        w.func = true
+                    end
+                end
+
             end
             widgets[col][row] = w
         end

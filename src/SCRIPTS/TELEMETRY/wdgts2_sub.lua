@@ -39,7 +39,7 @@ local layout = {
         {
             id="value",
             opts={
-                src=function() return getGraphRange(5).min..' / '..getGraphRange(5).max end,
+                src=function() return getGraphRange and getGraphRange(5).min..' / '..getGraphRange(5).max or '?' end,
                 lbl="min / max",
                 unit="dB",
                 style=SMLSIZE,
