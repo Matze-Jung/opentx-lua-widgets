@@ -18,7 +18,7 @@ Please go to the [releases page](https://github.com/Matze-Jung/opentx-lua-widget
 
 ## Test environment
 * [OpenTX v2.3.2](https://github.com/opentx/opentx) on FrSky Taranis Q X7
-* [OpenTX Companion v2.3.2](https://www.open-tx.org/) (FrSky platforms only)
+* [OpenTX Companion v2.3.2](https://www.open-tx.org/) (all FrSky Taranis platforms, Jumper T12)
 
 ## File structure
 - `TELEMETRY/` telemetry screen examples
